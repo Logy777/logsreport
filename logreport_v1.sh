@@ -1,5 +1,5 @@
 #!/bin/bash
-# Usage: ./script.sh access.log [server_ip]
+# Usage: ./logreport_v1.sh access.log [server_ip]
 
 LOGFILE="$1"
 SERVER_IP="$2"
@@ -86,9 +86,9 @@ awk '
 }
 END{
     for (k in count) print count[k], k
-}' "$FILTERED" | sort -nr | head -5 > /tmp/top5.txt
+}' "$FILTERED" | sort -nr | head -5 > ~/tmp/top5.txt
 
-cat /tmp/top5.txt
+cat ~/tmp/top5.txt
 echo
 
 # --- Анализ первых двух интервалов ---
@@ -135,7 +135,7 @@ while read cnt interval; do
         rm -f "$INTERVAL_LOG"
     fi
     i=$((i+1))
-done < /tmp/top5.txt
+done < ~/tmp/top5.txt
 
-rm -f "$FILTERED" /tmp/top5.txt
+rm -f "$FILTERED" ~/tmp/top5.txt
 
